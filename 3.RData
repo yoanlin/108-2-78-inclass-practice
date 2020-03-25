@@ -23,8 +23,8 @@ majors10_char <- c('經濟學系','社會學系','社會學系','經濟學系','
 
 typeof(majors10_char)
 class(majors10_char)
-
 ```
+
 
 ```{r}
 majors10_factor <- factor(majors10_char)
@@ -39,5 +39,50 @@ class(majors10_factor)
 
 ```{r}
 levels(majors10_factor)
+
 ```
+
+```{r}
+stringInteger <- c("1","2","-11")
+class(stringInteger) # 無法進行數值運算
+as.numeric(stringInteger)+2
+```
+
+```{r}
+studentId <- c(410773002, 410773015)
+studentId <- as.character(studentId)
+```
+```{r}
+library(lubridate)
+```
+台北 2020-03-18 13:52:40
+```{r}
+library(lubridate)
+tpeTime <- ymd_hms("2020-03-18 13:52:40",
+        tz="Asia/Taipei")
+```
+葡萄牙 Mar.18, 2020, 05:52:40
+```{r}
+pgTime <- mdy_hms("Mar.18, 2020, 05:52:40",
+                  tz="Europe/Lisbon")
+```
+```{r}
+with_tz(tpeTime, tzone="UTC")
+with_tz(pgTime, tzone="UTC")
+```
+```{r}
+studentTime <- c( ymd_hms("2020-03-04T08:20:25Z"),
+                  ymd_hms("2020-03-11 16:42:09", tz = "Asia/Taipei"),
+                  ymd_hms("2020-03-11 16:50:14", tz = "Asia/Taipei")
+)
+studentTime
+```
+
+
+
+
+
+
+
+
 
