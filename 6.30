@@ -1,0 +1,17 @@
+---
+title: '6.30'
+author: "Yoan"
+date: "2020/6/30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+sampleData <- list(
+  list("男", 45), list("女", 32), list("男",50), list("男",33), list("女", 21)
+)
+```
+
