@@ -15,3 +15,74 @@ sampleData <- list(
 )
 ```
 
+```{r}
+# 串接寫法(I): external dispatch
+sampleData[[1]] %>% {.[[1]]} 
+sampleData[[2]] %>% {.[[1]]}
+sampleData[[3]] %>% {.[[1]]}
+
+map(sampleData, ~{.x[[1]]})
+
+# 串接寫法(II): internal dispatch
+1 %>% {sampleData[[.]][[1]]}  
+2 %>% {sampleData[[.]][[1]]}  
+3 %>% {sampleData[[.]][[1]]}
+
+map(1:5, ~{sampleData[[.x]][[1]]})
+# map在單維度遞迴時，.x也可以只寫.
+map(1:5, ~{sampleData[[.]][[1]]})
+```
+
+```{r}
+eggs <- rep("雞蛋x1", 8)
+
+fryEgg <- function(egg){
+  str_replace(egg, "雞蛋", "荷包蛋")
+}
+
+# external dispatch
+eggs[[1]] %>% fryEgg(.)
+eggs[[2]] %>% fryEgg(.)
+eggs[[3]] %>% fryEgg(.)
+
+map(eggs, ~fryEgg(.x)) -> friedEggs1
+
+# internal dispatch
+1 %>% {fryEgg(eggs[[.]])}
+2 %>% {fryEgg(eggs[[.]])}
+3 %>% {fryEgg(eggs[[.]])}
+
+map(1:8, ~{fryEgg(eggs[[.]])}) -> friedEggs2
+```
+
+
+```{r}
+grade <- c(45, 74, NA)
+
+i<-3
+
+grade_i <- grade[[i]]
+if(!is.na(grade_i)){
+  if(grade_i >= 60){
+    "P"
+  } else if(grade_i < 60 ) {
+    "F"
+  }
+} else {
+  "缺考"
+}
+```
+
+
+
+
+
+
+
+
+
+
+```{r}
+
+```
+
